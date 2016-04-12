@@ -7,18 +7,20 @@ var CHANGE_EVENT = 'change';
 
 var _schedule ={};
 
-function create(){
+function create(tabid){
 	var _id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36);
 	var data = ['10:00AM',5,5,5,true,4,"30%","Avaiable"];
 	_schedule[_id] ={
 		id:_id,
-		data:data
+		data:data,
+		tabid:tabid
 	}
 }
 
 function destroy(_id){	
 	delete _schedule[_id];
 }
+
 var Store = assign({}, EventEmitter.prototype, {
 
 
@@ -29,18 +31,16 @@ var Store = assign({}, EventEmitter.prototype, {
   emitChange: function() {  
     this.emit(CHANGE_EVENT);
   },
-
   addChangeListener: function(callback) {
     this.on(CHANGE_EVENT, callback);  
   },
-
 });
 
 //Register callback to handle all updates
 Dispatcher.register(function(action){	
 	switch (action.actionType) {
 		case Constant.SCHEDULE_CREATE:
-			create();
+			create(action.tabid);
 			Store.emitChange();
 			break;
 		case Constant.SCHEDULE_DESTROY:

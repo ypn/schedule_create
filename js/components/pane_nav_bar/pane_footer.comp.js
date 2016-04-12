@@ -14,7 +14,7 @@ var PaneFooter = React.createClass({
 		);
 	},
 	create:function(){	
-		Action.create();	
+		Action.create(this.props.tabid);	
 	}
 });
 

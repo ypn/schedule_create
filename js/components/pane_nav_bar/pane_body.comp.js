@@ -11,8 +11,11 @@ var PaneBody 	= React.createClass({
 
 		var schedules =[];
 
-		for(var key in allSchedule){	
-			schedules.push(<Row key={key} schedule={allSchedule[key]}/>)
+		for(var key in allSchedule){			
+			if(this.props.tabid==allSchedule[key].tabid){
+				schedules.push(<Row key={key} schedule={allSchedule[key]}/>);
+			}
+			
 		}
 
 		return(

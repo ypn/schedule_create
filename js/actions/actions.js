@@ -2,9 +2,10 @@ var Dispatcher 	= require('../dispatcher/dispatcher');
 var Constant 	= require('../constants/constants');
 
 var AppAction ={
-	create:function(){
+	create:function(tabid){	
 		Dispatcher.dispatch({
-			actionType:Constant.SCHEDULE_CREATE
+			actionType:Constant.SCHEDULE_CREATE,
+			tabid:tabid
 		});
 	},
 
